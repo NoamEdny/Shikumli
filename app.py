@@ -3,7 +3,7 @@ import cv2
 from video_processor import process_frame
 
 def main():
-    st.title("הקבוצה של הטובים")
+    st.title("הקבוצה hhhhh הטובים")
 
     # Try to open webcam
     cap = cv2.VideoCapture(0)
