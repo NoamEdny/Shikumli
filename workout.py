@@ -1,4 +1,4 @@
-# workout.py - Camera page
+ # workout.py - Camera page
 import streamlit as st
 import cv2
 from video_processor import process_frame
@@ -21,6 +21,7 @@ def workout_page():
             break
 
         processed_frame = process_frame(frame)
+        processed_frame = cv2.cvtColor(processed_frame, cv2.COLOR_BGR2RGB)
         stframe.image(processed_frame, channels="BGR")
 
     cap.release()

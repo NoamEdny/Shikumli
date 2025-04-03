@@ -4,8 +4,8 @@ from video_processor import process_frame
 
 # app.py - Main file to manage navigation
 import streamlit as st
-from home import home_page
-from workout import workou_page
+from landing_page import home_page
+from workout import workout_page
 
 def main():
     st.title("הקבוצה של הטובים")
@@ -28,12 +28,11 @@ def main():
             break
 
         # Process frame: detect pose and draw results
-        image, finished = process_frame(frame)
+        image = process_frame(frame)
         stframe.image(image, channels="BGR")
 
     cap.release()
     st.success("Camera released. You can now close the app.")
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     main()
-

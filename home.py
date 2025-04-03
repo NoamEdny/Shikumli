@@ -1,16 +1,27 @@
-# home.py - Welcome screen
+# Home.py
 import streamlit as st
+from utils.styling import apply_common_styling, apply_landing_styling
+from utils.session_state import initialize_session_state
 
-def home_page():
-    st.title("ברוך הבא לאימון הפיזיותרפיה שלך")
-    st.write("עקוב אחר ההתקדמות שלך והתאמן עם פידבק בזמן אמת!")
-    
-    # Example progress bar (replace with real data tracking)
-    days_trained = st.session_state.get("days_trained", 8)
-    st.progress(days_trained / 30)  # Assuming a 30-day goal
-    
-    st.markdown(f"<h1 style='text-align: center; color: blue;'>{days_trained} ימים</h1>", unsafe_allow_html=True)
-    
-    if st.button("התחל אימון", key="start_button"):
-        st.session_state.page = "camera"
-        st.rerun()
+# Initialize session state
+initialize_session_state()
+
+# Apply styling
+apply_common_styling()
+apply_landing_styling()
+
+# Landing page content with improved styling
+st.markdown('<div class="main-container">', unsafe_allow_html=True)
+st.markdown('<div class="progress-title">Progress</div>', unsafe_allow_html=True)
+st.markdown(f'<div class="progress-bar-container"><div class="progress-bar-fill" style="width: {st.session_state.streak_days * 5}%;"></div></div>', unsafe_allow_html=True)
+st.markdown(f'<div class="days-counter"><div class="days-number">{st.session_state.streak_days}</div><div class="days-text">days</div></div>', unsafe_allow_html=True)
+
+# Link to the drills page with improved button styling
+if st.button("Start", key="start_button_landing"):
+    # Set any needed session state
+    st.session_state.button_clicked = False
+    st.session_state.selected_exercise = None
+    # Navigate to the choose drills page
+    st.switch_page("pages/01_choose_drills.py")
+
+st.markdown('</div>', unsafe_allow_html=True)
