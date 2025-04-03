@@ -3,6 +3,7 @@ import streamlit as st
 import cv2
 from video_processor import process_frame
 
+
 def workout_page():
     cap = cv2.VideoCapture(0)
 
@@ -18,9 +19,9 @@ def workout_page():
         if not ret:
             st.warning("Failed to read from webcam.")
             break
-        
+
         processed_frame = process_frame(frame)
         stframe.image(processed_frame, channels="BGR")
-    
+
     cap.release()
     st.success("camera closed successfully")
