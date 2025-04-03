@@ -2,8 +2,13 @@ import streamlit as st
 import cv2
 from video_processor import process_frame
 
+# app.py - Main file to manage navigation
+import streamlit as st
+from landing_page import home_page
+from workout import workout_page
+
 def main():
-    st.title("הקבוצה hhhhh הטובים")
+    st.title("הקבוצה של הטובים")
 
     # Try to open webcam
     cap = cv2.VideoCapture(0)
@@ -23,11 +28,11 @@ def main():
             break
 
         # Process frame: detect pose and draw results
-        processed_frame = process_frame(frame)
-        stframe.image(processed_frame, channels="BGR")
+        image = process_frame(frame)
+        stframe.image(image, channels="BGR")
 
     cap.release()
     st.success("Camera released. You can now close the app.")
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     main()
